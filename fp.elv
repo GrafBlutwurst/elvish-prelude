@@ -28,12 +28,12 @@ fn tryFn [f]{
         }
        }
     }
-    &flat-map [other]{
+    &flat-map= [other]{
       tryFn{
         $other[eval] $f
       }
     }
-    &flat-map-e [other]{
+    &flat-map-e= [other]{
       tryFn{
         try {
           ($f)
