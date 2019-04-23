@@ -51,6 +51,11 @@ fn tryFn [f]{
         }
       }
     }
+    &zip= [other]{
+      tryFn{
+        put [&fst=$f &snd=$other[eval]]
+      }
+    }
   ]
 }
 
@@ -109,13 +114,16 @@ fn assume-list [x]{
 
 
 fn fold-left [zero fun lst]{
-  (assume-fn fun)[flatMap] [f]{     
-    assume-list
+  params = ((assume-fn $fun)[zip] (assume-list $lst))[attempt] [tpl]{
+    put [&f= $tpl[fst] $list = $tpl[snd]]
   }
-
-  res = $zero
-  each [x]{res = ($f $res $x)} $list
-  put $res
+  
+  $params[attempt] [rec]{
+    res = $zero
+    each [x]{res = ($rec[f] $res $x)} $rec[list]
+    put $res
+  }
+  
 }
 
 fn filter [pred list]{
