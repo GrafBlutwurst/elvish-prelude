@@ -145,7 +145,7 @@ fn filter-p [pred list]{
     ]
   })
 
-  $params[attempt] [rec] {
+  $params[attempt] [rec]{
     each [x]{
       if ($rec[pred] $x) {
         put $x
