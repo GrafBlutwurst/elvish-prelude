@@ -86,7 +86,7 @@ fn assume-string [x]{
 
 fn assume-fn [x]{
   tryFn {
-    if (is-dn $x) {
+    if (is-fn $x) {
       put $x
     } else {
       fail $x" is not a Function"
