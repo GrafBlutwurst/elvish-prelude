@@ -55,7 +55,7 @@ fn tryFn [f]{
       tryFn {
         put [
           &fst=($f) 
-          &snd=$other[eval]
+          &snd=($other[eval])
         ]
       }
     }
