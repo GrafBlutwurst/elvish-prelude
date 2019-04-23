@@ -63,6 +63,24 @@ fn failure [err]{
   }
 }
 
+
+
+fn prepend-put [elem list]{
+  put $elem
+  explode $list
+}
+
+fn prepend [elem list]{put [(prepend-put $elem $list)]}
+
+fn append-put [list elem]{
+  explode $list
+  put $elem
+}
+
+fn append [list elem]{put [(append-put $list $elem)]}
+
+
+
 fn assume-string [x]{
   tryFn {
     if (is-string $x) {
@@ -156,19 +174,3 @@ fn contains-p [elem list]{
 }
 
 fn contains [elem list]{(contains-p $elem $list)[eval]}
-
-
-fn prepend-put [elem list]{
-  put $elem
-  explode $list
-}
-
-fn prepend [elem list]{put [(prepend-put $elem $list)]}
-
-fn append-put [list elem]{
-  explode $list
-  put $elem
-}
-
-fn append [list elem]{put [(append-put $list $elem)]}
-
