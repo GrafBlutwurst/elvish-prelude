@@ -145,10 +145,12 @@ fn filter-p [pred list]{
     ]
   })
 
-  $params[attempt] [rec]{
-    each [x]{
+  $params[flat-map] [rec]{
+    fold-left-p [] [acc x]{
       if ($rec[pred] $x) {
-        put $x
+        put (append $x  $acc)
+      } else {
+        put $acc
       }
     } $rec[list]
   }
