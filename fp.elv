@@ -24,7 +24,7 @@ fn tryFn [f]{
         try {
           ($f)
         } except e {
-          ($g e)
+          $g e
         }
        }
       
