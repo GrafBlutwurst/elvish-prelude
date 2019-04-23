@@ -79,7 +79,7 @@ fn assume-string [x]{
     if (is-string $x) {
       put $x
     } else {
-      fail $x" is not a String"
+      fail ((to-string $x)" is not a String")
     }
   }
 }
@@ -89,7 +89,7 @@ fn assume-fn [x]{
     if (is-fn $x) {
       put $x
     } else {
-      fail $x" is not a Function"
+      fail ((to-string $x)" is not a Function")
     }
   }
 }
@@ -99,7 +99,7 @@ fn assume-map [x]{
     if (is-map $x) {
       put $x
     } else {
-      fail $x" is not a Map"
+      fail ((to-string $x)" is not a Map")
     }
   }
 }
@@ -109,7 +109,7 @@ fn assume-list [x]{
     if (is-list $x) {
       put $x
     } else {
-      fail $x" is not a List"
+      fail ((to-string $x)" is not a List")
     }
   }
 }
