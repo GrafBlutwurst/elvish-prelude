@@ -155,7 +155,7 @@ fn filter-p [pred list]{
   $params[flat-map] [rec]{
     fold-left-p [] [acc x]{
       if ($rec[pred] $x) {
-        put (append $x  $acc)
+        put (append $acc $x)
       } else {
         put $acc
       }
