@@ -29,12 +29,12 @@ fn tryFn [f]{
        }
     }
     &flat-map= [other]{
-      tryFn{
+      tryFn {
         $other[eval] $f
       }
     }
     &flat-map-e= [other]{
-      tryFn{
+      tryFn {
         try {
           ($f)
         } except e {
@@ -52,8 +52,11 @@ fn tryFn [f]{
       }
     }
     &zip= [other]{
-      tryFn{
-        put [&fst=($f) &snd=$other[eval]]
+      tryFn {
+        put [
+          &fst=($f) 
+          &snd=$other[eval]
+        ]
       }
     }
   ]
