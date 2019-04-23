@@ -79,10 +79,6 @@ fn assume-list [x]{
 
 
 fn fold-left [zero f list]{
-  (assume-list $list)[map] [lst]{
-    
-  } 
-
   res = $zero
   each [x]{res = ($f $res $x)} $list
   put $res
