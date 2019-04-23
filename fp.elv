@@ -14,12 +14,12 @@ fn is-type [x]{ eq (kind-of $x $list-type) }
 fn tryFn [f]{
   put [
     &eval= $f
-    &flatMap= [g]{
+    &attempt= [g]{
       tryFn {
         $g ($f)
       }
     }
-    &flatMapE= [g]{
+    &onError= [g]{
        tryFn {
         try {
           ($f)
@@ -27,7 +27,20 @@ fn tryFn [f]{
           $g e
         }
        }
-      
+    }
+    &flat-map [other]{
+      tryFn{
+        $other[eval] $f
+      }
+    }
+    &flat-map-e [other]{
+      tryFn{
+        try {
+          ($f)
+        } except e {
+          $other[eval] e
+        }
+      }
     }
     &fold= [onOk onErr]{
       tryFn {
@@ -36,11 +49,6 @@ fn tryFn [f]{
         } except e {
           $onErr $e
         }
-      }
-    }
-    &zip= [other]{
-      (assume-map $other)[flatMap] [rhs]{
-        [&l=($f) &r=($rhs[eval])]
       }
     }
   ]
@@ -100,7 +108,11 @@ fn assume-list [x]{
 
 
 
-fn fold-left [zero f list]{
+fn fold-left [zero fun lst]{
+  (assume-fn fun)[flatMap] [f]{     
+    assume-list
+  }
+
   res = $zero
   each [x]{res = ($f $res $x)} $list
   put $res
