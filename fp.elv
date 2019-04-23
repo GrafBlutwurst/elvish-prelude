@@ -164,7 +164,7 @@ fn contains-p [elem list]{
   }
 }
 
-fn contains [elem list] {(contains-p $elem $list)[eval]}
+fn contains [elem list]{(contains-p $elem $list)[eval]}
 
 
 fn prepend-put [elem list]{
