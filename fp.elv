@@ -43,6 +43,18 @@ fn tryFn [f]{
   ]
 }
 
+fn success [value] {
+  tryFn {
+    put $value
+  }
+}
+
+fn failure [err] {
+  tryFn {
+    fail $err
+  }
+}
+
 fn assume-string [x]{
   tryFn {
     if (is-string $x) {
