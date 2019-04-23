@@ -138,7 +138,7 @@ fn fold-left-p [zero fun lst]{
 fn fold-left [zero fun lst]{ (fold-left-p $zero $fun $lst)[eval] }
 
 fn filter-p [pred list]{
-  params = (((asume-fn $pred)[zip] (assume-list $list))[attempt] [tpl]{
+  params = (((assume-fn $pred)[zip] (assume-list $list))[attempt] [tpl]{
     put [
       &pred= $tpl[fst]
       &list= $tpl[snd]
