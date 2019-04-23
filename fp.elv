@@ -114,6 +114,10 @@ fn assume-list [x]{
   }
 }
 
+fn empty [list]{eq $list []}
+
+fn not-empty [list]{not-eq $list []}
+
 
 
 fn fold-left-p [zero fun lst]{
@@ -133,29 +137,47 @@ fn fold-left-p [zero fun lst]{
 
 fn fold-left [zero fun lst]{ (fold-left-p $zero $fun $lst)[eval] }
 
-fn filter [pred list]{
-  each [x]{
-    if ($pred $x) {
-      put $x
-    }
-  } $list
+fn filter-p [pred list]{
+  params = (((asume-fn $pred)[zip] (assume-list $list))[attempt] [tpl]{
+    put [
+      &pred= $tpl[fst]
+      &list= $tpl[snd]
+    ]
+  })
+
+  $params[attempt] [rec] {
+    each [x]{
+      if ($rec[pred] $x) {
+        put $x
+      }
+    } $rec[list]
+  }
 }
 
-fn contains [elem list]{
-  not (eq (filter [x]{eq $x $elem} $list) [])
+fn filter [pred list]{ (filter-p $pred $list)[eval] }
+
+
+
+fn contains-p [elem list]{
+  (filter-p [x]{eq $x $elem} $list)[attempt] [lst]{
+    (not-empty $lst)
+  }
 }
 
-fn prependPut [elem list]{
+fn contains [elem list] {(contains-p $elem $list)[eval]}
+
+
+fn prepend-put [elem list]{
   put $elem
   explode $list
 }
 
-fn prepend [elem list]{put [(prependPut $elem $list)]}
+fn prepend [elem list]{put [(prepend-put $elem $list)]}
 
-fn appendPut [list elem]{
+fn append-put [list elem]{
   explode $list
   put $elem
 }
 
-fn append [list elem]{put [(appendPut $list $elem)]}
+fn append [list elem]{put [(append-put $list $elem)]}
 
