@@ -29,18 +29,7 @@ fn tryFn [f]{
        }
     }
     &flat-map= [other]{
-      tryFn {
-        $other[eval] $f
-      }
-    }
-    &flat-map-e= [other]{
-      tryFn {
-        try {
-          $f
-        } except e {
-          $other[eval] [&cause=$e[cause]]
-        }
-      }
+        $other ($f)
     }
     &fold= [onOk onErr]{
       tryFn {
