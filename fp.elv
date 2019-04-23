@@ -5,10 +5,10 @@ fn-type = "fn"
 map-type = "map"
 list-type = "list"
 
-fn is-string [x]{ eq (kind-of $x $string-type) }
-fn is-fn [x]{ eq (kind-of $x $fn-type) }
-fn is-map [x]{ eq (kind-of $x $map-type) }
-fn is-type [x]{ eq (kind-of $x $list-type) }
+fn is-string [x]{ eq (kind-of $x) $string-type }
+fn is-fn [x]{ eq (kind-of $x) $fn-type }
+fn is-map [x]{ eq (kind-of $x) $map-type }
+fn is-type [x]{ eq (kind-of $x) $list-type }
 
 
 fn tryFn [f]{
