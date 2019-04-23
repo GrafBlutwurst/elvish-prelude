@@ -43,13 +43,13 @@ fn tryFn [f]{
   ]
 }
 
-fn success [value] {
+fn success [value]{
   tryFn {
     put $value
   }
 }
 
-fn failure [err] {
+fn failure [err]{
   tryFn {
     fail $err
   }
