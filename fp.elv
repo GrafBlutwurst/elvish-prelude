@@ -20,13 +20,14 @@ fn tryFn [f]{
       }
     }
     &flatMapE= [g]{
-      try {
-        tryFn $f
-      } except e {
-        tryFn {
-          $g e
+       tryFn {
+        try {
+          ($f)
+        } except e {
+          ($g e)
         }
-      }
+       }
+      
     }
     &fold= [onOk onErr]{
       tryFn {
