@@ -113,7 +113,7 @@ fn assume-list [x]{
 
 
 
-fn fold-left [zero fun lst]{
+fn fold-left-p [zero fun lst]{
   params = ((assume-fn $fun)[zip] (assume-list $lst))[attempt] [tpl]{
     put [
       &f= $tpl[fst] 
@@ -126,8 +126,9 @@ fn fold-left [zero fun lst]{
     each [x]{res = ($rec[f] $res $x)} $rec[list]
     put $res
   }
-  
 }
+
+fn fold-left [zero fun lst]{ (fold-left-p $zero $fun $lst)[eval] }
 
 fn filter [pred list]{
   each [x]{
