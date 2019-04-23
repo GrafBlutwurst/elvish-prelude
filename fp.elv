@@ -53,7 +53,7 @@ fn tryFn [f]{
     }
     &zip= [other]{
       tryFn{
-        put [&fst=$f &snd=$other[eval]]
+        put [&fst=($f) &snd=$other[eval]]
       }
     }
   ]
