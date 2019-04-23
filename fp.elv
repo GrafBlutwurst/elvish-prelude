@@ -26,8 +26,7 @@ fn tryFn [f]{
         } except e {
           echo (kind-of $g)
           echo (to-string $g)
-          ($g [&cause="testibus"])
-          ($g $e)
+          ($g [&cause=$e[cause]])
         }
        }
     }
@@ -41,7 +40,7 @@ fn tryFn [f]{
         try {
           ($f)
         } except e {
-          $other[eval] $e
+          ($other[eval] [&cause=$e[cause]])
         }
       }
     }
@@ -50,7 +49,7 @@ fn tryFn [f]{
         try {
           $onOk ($f)
         } except e {
-          $onErr $e
+          $onErr [&cause=$e[cause]]
         }
       }
     }
