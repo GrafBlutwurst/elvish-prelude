@@ -26,6 +26,7 @@ fn tryFn [f]{
         } except e {
           echo (kind-of $g)
           echo (to-string $g)
+          ($g)
           ($g $e)
         }
        }
