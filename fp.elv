@@ -22,10 +22,8 @@ fn tryFn [f]{
     &onError= [g]{
        tryFn {
         try {
-          ($f)
+          $f
         } except e {
-          echo (kind-of $g)
-          echo (to-string $g)
           $g [&cause=$e[cause]]
         }
        }
@@ -38,9 +36,9 @@ fn tryFn [f]{
     &flat-map-e= [other]{
       tryFn {
         try {
-          ($f)
+          $f
         } except e {
-          ($other[eval] [&cause=$e[cause]])
+          $other[eval] [&cause=$e[cause]]
         }
       }
     }
