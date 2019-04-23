@@ -19,7 +19,7 @@ fn tryFn [f]{
         $g ($f)
       }
     }
-    &flatMapR = [g]{
+    &flatMapR= [g]{
       try {
         put ($f)
       } except e {
