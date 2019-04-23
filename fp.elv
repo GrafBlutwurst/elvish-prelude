@@ -117,12 +117,12 @@ fn assume-list [x]{
 
 
 fn fold-left-p [zero fun lst]{
-  params = ((assume-fn $fun)[zip] (assume-list $lst))[attempt] [tpl]{
+  params = (((assume-fn $fun)[zip] (assume-list $lst))[attempt] [tpl]{
     put [
       &f= $tpl[fst] 
       &list= $tpl[snd]
     ]
-  }
+  })
   
   $params[attempt] [rec]{
     res = $zero
