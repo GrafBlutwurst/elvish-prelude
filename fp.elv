@@ -160,7 +160,7 @@ fn filter [pred list]{ (filter-p $pred $list)[eval] }
 
 fn contains-p [elem list]{
   (filter-p [x]{put (eq $x $elem)} $list)[attempt] [lst]{
-    (not-empty $lst)
+    put (not-empty $lst)
   }
 }
 
